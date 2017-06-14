@@ -17,10 +17,11 @@ Route::get('/', function () {
 
 //Route::resource('blog', 'BlogController');
 
-Route::get('blog', 'BlogController@index');
-Route::post('blog', 'BlogController@store');
-Route::get('blog/create', 'BlogController@create');
-Route::get('blog/{id}', 'BlogController@show');
-Route::put('blog/{id}', 'BlogController@update');
-Route::delete('blog/{id}', 'BlogController@destroy');
-Route::get('blog/{id}/edit', 'BlogController@edit');
+Route::get('blog/', 'BlogController@index')->name('blog.index');
+Route::post('blog/', 'BlogController@store')->name('blog.store');
+Route::get('blog/create', 'BlogController@create')->name('blog.create');
+Route::get('blog/{id}', 'BlogController@show')->name('blog.show');
+Route::put('blog/{id}', 'BlogController@update')->name('blog.update');
+Route::delete('blog/{id}', 'BlogController@destroy')->name('blog.destroy');
+Route::get('blog/{id}/confirm', 'BlogController@confirm')->name('blog.confirm');
+Route::get('blog/{id}/edit', 'BlogController@edit')->name('blog.edit');
