@@ -5,8 +5,9 @@
 @endsection
 
 @section('header')
-  <a href="{{ action('BlogController@show', $post->id) }}">[記事に戻る]</a>
   @parent
+  <br>
+  <a href="{{ action('BlogController@show', $post->id) }}">[閲覧] <b>{{ $post['title'] }}</b></a>
 @endsection
 
 @section('content')
@@ -24,6 +25,3 @@
 @endsection
 
 @section('footer')
-  <a href="{{ action('BlogController@show', $post->id) }}">[記事に戻る]</a><br><br>
-  @parent
-@endsection

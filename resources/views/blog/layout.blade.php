@@ -18,8 +18,13 @@
   th
   {
     text-align: center;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
+  td.list
+  {
+    vertical-align: top;
+    padding-bottom: 15px;
   }
 </style>
 </head>
@@ -29,7 +34,7 @@
     <tr>
       <td align="right">
         @section('header')
-        <a href="{{ action('BlogController@index') }}">[記事一覧]</a> <a href="{{ action('BlogController@create') }}">[記事作成]</a>
+          @include('blog.headerFooter')
         @show
       </td>
     </tr>
@@ -47,7 +52,7 @@
       <td align="center">
         <br>
         @section('footer')
-        <a href="{{ action('BlogController@index') }}">[記事一覧]</a> <a href="{{ action('BlogController@create') }}">[記事作成]</a>
+          @include('blog.headerFooter')
         @show
       </td>
     </tr>

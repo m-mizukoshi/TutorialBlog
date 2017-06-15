@@ -1,7 +1,11 @@
 @extends('blog.layout')
 
 @section('title')
-  {{ $post['title'] }}
+  @if(isset($post['title']))
+    {{ $post['title'] }}
+  @else
+    [ページが存在しません]
+  @endif
 @endsection
 
 @section('header')
@@ -10,25 +14,25 @@
   <tr>
     <td align="right">
       @if(isset($post['title']))
-        {{ $post['created_at'] }}
+        {{ $post['created_at'] }}<br>
 
         @if(isset($post['updated_at']))
-          <br>
-          <span style="font-size:small;">( {{ $post['updated_at'] }} Update )</span>
+          <span style="font-size:small;">( {{ $post['updated_at'] }} 更新 )</span><br>
         @endif
 
-        <br>
-        <a href="{{ action('BlogController@edit', $post->id) }}">[編集]</a> <a href="{{ action('BlogController@confirm', $post->id) }}">[削除]</a><br>
+        @include('blog.postController')<br>
         <br>
       </td>
     </tr>
     <tr>
-      <td>{{ $post['content'] }}</td>
+      <td>
+        {!! nl2br($post['content']) !!}
+      </td>
     </tr>
     <tr>
       <td align="right">
         <br>
-        <a href="{{ action('BlogController@edit', $post->id) }}">[編集]</a> <a href="{{ action('BlogController@confirm', $post->id) }}">[削除]</a><br>
+        @include('blog.postController')<br>
         <br>
       @endif
     </td>
@@ -36,10 +40,3 @@
 @endsection
 
 @section('footer')
-  @if(!isset($post['title']))
-    ページが存在しません。<br>
-    <a href="{{ action('BlogController@index') }}">[記事一覧へ]</a>
-  @else
-    @parent
-  @endif
-@endsection
