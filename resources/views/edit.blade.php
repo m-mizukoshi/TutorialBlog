@@ -1,68 +1,26 @@
-<?php
-use App\Post;
-?>
-<!doctype html>
-<html>
+@extends('layout')
 
-<head>
-<meta charset="utf-8">
-<title>test</title>
-</head>
+@section('title')
+    [編集] {{ $post['title'] }}
+@endsection
 
-<body>
-
-dd($lists);
-<!--
-  <p>こんにちは</p>
-  <table>
+@section('content')
     <tr>
-      <th>記事ID</th>
-      <th>タイトル</th>
-      <th>投稿日時</th>
-    </tr>
-    @foreach ($lists as $list)
-    <tr>
-      <td>{{$list->id}}</td>
-      <td>{{$list->title}}</td>
-      <td>{{$list->created_at}}</td>
+        <td align="right">
+            @include('parts._show')
+            @include('parts._delete')
+        </td>
     </tr>
     <tr>
-      <td colspan = 3>{{$list->content}}</td>
+        <td>
+            @include('parts._error')
+            <form action="{{ route('posts.update', $post) }}" method="POST">
+                {{ method_field('PUT') }}
+                @include('parts._form')
+                <div align="center">
+                    <input type="submit" value="更新">&nbsp;<input type="reset" value="リセット">
+                </div>
+            </form>
+        </td>
     </tr>
-    <tr>
-      <td colspan = 3>{{$list->updated_at}}</td>
-    </tr>
-    @endforeach
-  </table>
-</body> -->
-
-</html>
-
-
-
-<!-- <p>こんにちは</p>
-<table>
-  <tr>
-    <th>記事ID</th>
-    <th>タイトル</th>
-    <th>投稿日時</th>
-  </tr>
-  <?php
-  // foreach ($lists as $list)
-  // {
-  // ?>
-  // <tr>
-  //   <td><?php echo $list['id']; ?></td>
-    <td><?php echo $list['title']; ?></td>
-    <td><?php echo $list['created_at']; ?></td>
-  </tr>
-  <tr>
-    <td colspan = 3><?php echo $list['content']; ?></td>
-  </tr>
-  <tr>
-    <td colspan = 3><?php echo $list['updated_at'] ?></td>
-  </tr>
-  <?php
-  }
-  ?>
-</table> -->
+@endsection

@@ -12,16 +12,16 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('posts.index');
 });
 
-//Route::resource('blog', 'BlogController');
+Route::get('/logon', 'HomeController@index')->name('logon.index');
 
-Route::get('blog/', 'BlogController@index')->name('blog.index');
-Route::post('blog/', 'BlogController@store')->name('blog.store');
-Route::get('blog/create', 'BlogController@create')->name('blog.create');
-Route::get('blog/{id}', 'BlogController@show')->name('blog.show');
-Route::put('blog/{id}', 'BlogController@update')->name('blog.update');
-Route::delete('blog/{id}', 'BlogController@destroy')->name('blog.destroy');
-Route::get('blog/{id}/confirm', 'BlogController@confirm')->name('blog.confirm');
-Route::get('blog/{id}/edit', 'BlogController@edit')->name('blog.edit');
+Route::resource('/posts', 'PostsController', ['only' => ['index', 'show']]);
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::resource('/posts', 'PostsController', ['only' => ['store', 'create', 'update', 'destroy', 'delete', 'edit']]);
+    Route::get('/posts/{post}/delete', 'PostsController@delete')->name('posts.delete');
+});
+
+Auth::routes();
