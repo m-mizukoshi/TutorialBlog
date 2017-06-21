@@ -20,7 +20,7 @@ Route::get('/logon', 'HomeController@index')->name('logon.index');
 Route::resource('/posts', 'PostsController', ['only' => ['index', 'show']]);
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::resource('/posts', 'PostsController', ['only' => ['store', 'create', 'update', 'destroy', 'delete', 'edit']]);
+    Route::resource('/posts', 'PostsController', ['only' => [ 'store', 'create', 'update', 'destroy', 'delete', 'edit']]);
     Route::get('/posts/{post}/delete', 'PostsController@delete')->name('posts.delete');
 });
 
