@@ -2,11 +2,11 @@
 
 @section('title')
     @if(isset($keyword, $dateStart, $dateEnd))
-        [{{ $dateStart }} 〜 {{ $dateEnd }} の "{{ $keyword }}" の検索結果]
+        [{{ $dateStart }} から {{ $dateEnd }} の "{{ $keyword }}" の検索結果]
     @elseif(isset($keyword))
         ["{{ $keyword }}" の検索結果]
     @elseif(isset($dateStart, $dateEnd))
-        [{{ $dateStart }} 〜 {{ $dateEnd }} の検索結果]
+        [{{ $dateStart }} から {{ $dateEnd }} の検索結果]
     @elseif(Session::has('status'))
         [記事の{{ session('status') }}が完了しました]
     @else

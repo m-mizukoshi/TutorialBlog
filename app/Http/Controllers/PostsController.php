@@ -26,17 +26,13 @@ class PostsController extends Controller
                 $keyword = mb_convert_kana($keyword, 's');
                 $keywords = preg_split("/[\s]+/", $keyword);
 
-                // タイトル内で絞り込む
                 $query->orWhere(function($query) use($keywords)
                 {
                     foreach ($keywords as $word)
                     {
                         $query->Where('title','LIKE','%'.$word.'%');
                     }
-                });
-
-                // 本文内で絞り込む
-                $query->orWhere(function($query) use($keywords)
+                })->orWhere(function($query) use($keywords)
                 {
                     foreach ($keywords as $word)
                     {
